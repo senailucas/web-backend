@@ -3,7 +3,6 @@ from flask_restful import Api
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
-from resources.movies import Movies, Movie
 from resources.users import Users, User, UserLogin
 from resources.products import Products, Product
 from resources.clients import Clients, Client
@@ -25,9 +24,6 @@ app.config["JWT_SECRET_KEY"] = "xxxtentacionorvideos?"
 def create_database():
     database.create_all()
 
-
-api.add_resource(Movies, '/movies')
-api.add_resource(Movie, '/movies/<int:id>', '/movies')
 
 api.add_resource(Users, '/users')
 api.add_resource(User, '/users/<int:id>', '/users')
