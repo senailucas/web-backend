@@ -6,6 +6,7 @@ from flask_jwt_extended import JWTManager
 from resources.users import Users, User, UserLogin
 from resources.products import Products, Product
 from resources.clients import Clients, Client
+from resources.orders import Orders, Order
 
 
 app = Flask(__name__)
@@ -33,6 +34,9 @@ api.add_resource(Product, '/products/<int:id>', '/products')
 
 api.add_resource(Clients, '/clients')
 api.add_resource(Client, '/clients/<int:id>', '/clients')
+
+api.add_resource(Orders, '/orders')
+api.add_resource(Order, '/orders/<int:id>', '/orders')
 
 api.add_resource(UserLogin, '/login')
 
