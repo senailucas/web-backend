@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask_restful import Resource, reqparse
-from models.products import ProductModel
+from models.product import ProductModel
 from flask_jwt_extended import jwt_required
 
 
