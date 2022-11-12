@@ -14,6 +14,10 @@ class Users(Resource):
 
 
 class User(Resource):
+    minha_requisicao = reqparse.RequestParser()
+    minha_requisicao.add_argument('username', type=str, required=True, help="username is required")
+    minha_requisicao.add_argument('password', type=str, required=True, help="password is required")
+
     def get(self, id):
         user = UserModel.find_user_by_id(id)
         if user:
@@ -21,11 +25,12 @@ class User(Resource):
         return {'message': 'user not found'}, 204
 
     def post(self):
+        dados = User.minha_requisicao.parse_args()
+
         if UserModel.find_user_by_username(dados['username']):
             return {'message':'Login {} already exists'.format(dados['username'])}, 200
 
         user_id = UserModel.find_last_user()
-        dados = User.minha_requisicao.parse_args()
         new_user = UserModel(user_id, **dados)
 
         try:
